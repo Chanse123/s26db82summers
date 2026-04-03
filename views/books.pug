@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+
+  div(class='container-fluid')
+    div(class='row')
+      each item in results
+        div(class='col-sm-4')
+          h3 #{item.title}
+          p Author: #{item.author}
+          p Price: $#{item.price}
+
+  a(href='/books') View Book Results

@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  p Rows: #{query.rows}
+  p Cols: #{query.cols}
+
+  - let rows = Number(query.rows)
+  - let cols = Number(query.cols)
+
+  if !Number.isInteger(rows) || !Number.isInteger(cols)
+    p Invalid input (not integers)
+
+  else if rows < 2 || rows > 12
+    p Rows out of range (2-12)
+
+  else if cols < 2 || cols > 12
+    p Cols out of range (2-12)
+
+  else
+    table(border="1")
+      - for (let i = 0; i < rows; i++)
+        tr
+          - for (let j = 0; j < cols; j++)
+            td(style="padding:10px") #{(2 * i) - j}
