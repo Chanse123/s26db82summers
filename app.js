@@ -15,6 +15,7 @@ var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
 var Costume = require("./models/costume");
 var resourceRouter = require('./routes/resource');
+var costumesRouter = require('./routes/costumes');
 
 const connectionString = process.env.MONGO_CON;
 
@@ -63,6 +64,7 @@ app.use('/books', booksRouter);
 app.use('/grid', gridRouter);
 app.use('/select', pickRouter);
 app.use('/resource', resourceRouter);
+app.use('/costumes', costumesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
