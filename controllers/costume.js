@@ -23,8 +23,16 @@ exports.costume_view_all_Page = async function(req, res) {
   }
 };
 
-exports.costume_detail = function(req, res) {
-  res.send('NOT IMPLEMENTED: Costume detail: ' + req.params.id);
+exports.costume_detail = async function(req, res) {
+  console.log("detail " + req.params.id);
+
+  try {
+    let result = await Costume.findById(req.params.id);
+    res.send(result);
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": document for id ${req.params.id} not found}`);
+  }
 };
 
 exports.costume_create_post = async function(req, res) {
