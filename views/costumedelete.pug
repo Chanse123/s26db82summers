@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1= title
+
+  - let costumeid = toShow._id
+  - let costume_type = toShow.costume_type
+  - let costumesize = toShow.size
+  - let costumecost = toShow.cost
+
+  div.row
+    div(class="costumeAttr mr-3") Costume ID:
+    div #{costumeid}
+
+  div.row
+    div(class="costumeAttr mr-3") Costume Type:
+    div #{costume_type}
+
+  div.row
+    div(class="costumeAttr mr-3") Costume Size:
+    div #{costumesize}
+
+  div.row
+    div(class="costumeAttr mr-3") Costume Cost:
+    div #{costumecost}
+
+  br
+
+  button(onclick=`deleteItem('${costumeid}')`) Delete
+  a(href="/costumes") Cancel
+
+  script.
+    function deleteItem(id) {
+      fetch(`/resource/costumes/${id}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(() => {
+        alert("Deleted successfully");
+        window.location.href = "/costumes";
+      })
+      .catch(err => {
+        alert("Delete failed: " + err);
+      });
+    }
