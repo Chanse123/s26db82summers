@@ -53,8 +53,17 @@ exports.costume_create_post = async function(req, res) {
   }
 };
 
-exports.costume_delete = function(req, res) {
-  res.send('NOT IMPLEMENTED: Costume delete DELETE ' + req.params.id);
+exports.costume_delete = async function(req, res) {
+  console.log("delete " + req.params.id);
+
+  try {
+    let result = await Costume.findByIdAndDelete(req.params.id);
+    console.log("Removed " + result);
+    res.send(result);
+  } catch (err) {
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+  }
 };
 
 exports.costume_update_put = async function(req, res) {
