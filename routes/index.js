@@ -48,7 +48,10 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  res.render('login', { title: 'Login', user: req.user });
+  res.render('login', { 
+    title: 'Login',
+    error: req.query.error
+  });
 });
 
 router.post('/login', 
