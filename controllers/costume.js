@@ -46,10 +46,10 @@ exports.costume_create_post = async function(req, res) {
 
   try {
     let result = await document.save();
-    res.send(result);
+    res.redirect('/costumes'); // go back to list on success
   } catch (err) {
     res.status(500);
-    res.send(`{"error": ${err}}`);
+    res.send(err.message); // clean readable error
   }
 };
 
