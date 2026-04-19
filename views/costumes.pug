@@ -3,8 +3,16 @@ extends layout
 block content
   h1= title
 
+  a(href="/costumes/create")
+    button Create New Costume
+
   ul
     each item in results
       li
         | #{item.costume_type} - #{item.size} - $#{item.cost}
+
         a(href=`/costumes/update?id=${item._id}` style="margin-left:10px") Update
+
+        a(href=`/costumes/detail?id=${item._id}` style="margin-left:10px") Detail
+
+        a(href=`/costumes/delete?id=${item._id}` style="margin-left:10px") Delete
